@@ -11,13 +11,15 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  email          String   @unique
-  hashedPassword String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  basketIds      String[] @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
   course         Course[]
 }
 
@@ -29,6 +31,9 @@ model Course {
   author      String
   price       String
   description String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
   userId      String   @db.ObjectId
+
+ user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
 }
