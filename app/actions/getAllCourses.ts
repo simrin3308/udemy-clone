@@ -3,8 +3,6 @@ import prisma from "../libs/prismadb";
 export default async function getAllCourses(params: any) {
   try {
     const { result } = params;
-    console.log(params);
-    console.log(result);
 
     let query: any = {};
     if (result) {

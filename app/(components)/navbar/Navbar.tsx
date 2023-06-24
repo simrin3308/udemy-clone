@@ -3,24 +3,53 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { User } from "@prisma/client";
 import { SafeUser } from "@/app/types";
 import UserMenu from "./UserMenu";
+import { useSearchParams } from "next/navigation";
+import qs from "query-string";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   myUser: SafeUser | null;
 }
 
 export const Navbar = ({ myUser }: UserMenuProps) => {
+  const router = useRouter();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const params = useSearchParams();
+  console.log(params);
 
   const closeUserMenu = () => {
     setUserMenuOpen(false);
   };
 
-  const onSearch = () => {};
+  const onSearch = (e: FormEvent) => {
+    e.preventDefault();
+
+    let currentQuery = {};
+
+    if (params) {
+      currentQuery = qs.parse(params.toString());
+      console.log(currentQuery);
+
+      const updatedQuery: any = {
+        ...currentQuery,
+        result: searchQuery,
+      };
+      const url = qs.stringifyUrl(
+        {
+          url: "/",
+          query: updatedQuery,
+        },
+        { skipNull: true }
+      );
+      router.push(`/search/${url}`);
+    }
+  };
 
   return (
     <div className="shadow-xl bg-white z-[99999] sticky">
