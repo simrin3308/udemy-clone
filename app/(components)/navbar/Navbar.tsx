@@ -21,7 +21,6 @@ export const Navbar = ({ myUser }: UserMenuProps) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const params = useSearchParams();
-  console.log(params);
 
   const closeUserMenu = () => {
     setUserMenuOpen(false);
@@ -56,7 +55,7 @@ export const Navbar = ({ myUser }: UserMenuProps) => {
       <div className="p-3 px-4">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-6 flex-1 relative">
-            <Link href="#">
+            <Link href="/">
               <img src="/logo.svg" alt="Logo" width={91} height={34} />
             </Link>
 
