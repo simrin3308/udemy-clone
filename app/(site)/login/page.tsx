@@ -30,6 +30,7 @@ export default function Register() {
       }
     });
     router.push("/");
+    router.refresh();
   };
 
   return (

@@ -15,7 +15,6 @@ interface UserMenuProps {
 export const Navbar = ({ myUser }: UserMenuProps) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  //   console.log(myUser);
 
   const closeUserMenu = () => {
     setUserMenuOpen(false);
@@ -29,7 +28,7 @@ export const Navbar = ({ myUser }: UserMenuProps) => {
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-6 flex-1 relative">
             <Link href="#">
-              <img src="/next.svg" alt="Logo" width={91} height={34} />
+              <img src="/logo.svg" alt="Logo" width={91} height={34} />
             </Link>
 
             <form className="lg:flex-1 lg:flex hidden" onSubmit={onSearch}>
@@ -89,8 +88,8 @@ export const Navbar = ({ myUser }: UserMenuProps) => {
                 className="w-[40px] h-[40px] rounded-full bg-black flex items-center justify-center text-white cursor-pointer"
                 onClick={() => setUserMenuOpen((prev) => !prev)}
               >
-                <span>{myUser.name.at(0)?.toUpperCase()}</span>
-                <span>{myUser.name.at(1)?.toUpperCase()}</span>
+                <span>{myUser.name?.at(0)?.toUpperCase()}</span>
+                <span>{myUser.name?.at(1)?.toUpperCase()}</span>
               </div>
             )}
 
