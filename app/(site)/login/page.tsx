@@ -27,10 +27,10 @@ export default function Register() {
       }
       if (callback?.ok && !callback?.error) {
         toast.success("Logged In successfully");
+        router.refresh();
       }
     });
     router.push("/");
-    router.refresh();
   };
 
   return (
